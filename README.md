@@ -5,4 +5,5 @@ Playground for Dagger 2 advanced features in pure Java.
 
 Includes:
 
-1. Using @Binds
+1. @Binds
+2. @Reuse (TODO)
