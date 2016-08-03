@@ -5,13 +5,16 @@ import javax.inject.Inject;
 public class Greeter {
 
     private final GreetingService greetingService;
+    private final Displayer displayer;
 
     @Inject
-    public Greeter(GreetingService greetingService) {
+    public Greeter(GreetingService greetingService,
+                   Displayer displayer) {
         this.greetingService = greetingService;
+        this.displayer = displayer;
     }
 
     public void greet() {
-        System.out.println(this.greetingService.getGreeting());
+        this.displayer.display(this.greetingService.getGreeting());
     }
 }
