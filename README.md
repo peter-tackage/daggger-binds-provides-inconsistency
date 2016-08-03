@@ -6,7 +6,14 @@ Playground for Dagger 2 advanced features in pure Java.
 Includes:
 
 1. @Binds
-2. @Reuse (TODO)
+2. Static Provides methods
+3. @Reuse (TODO)
+4. Subcomponents (TODO)
+5. Map multi-bindings (TODO)
+6. Producers (asynchronous) (TODO)
+7. SubComponent Builders(TODO)
+
+Inspired by [this video](https://www.youtube.com/watch?v=iwjXqRlEevg) by Gregory Kick from MCE 03
 
 Acknowledgements
 ----------------
