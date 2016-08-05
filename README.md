@@ -1,40 +1,37 @@
-Dagger 2 Examples
+Possible Dagger 2 @Binds vs @Provides Error Report Inconsistency
 =================
 
-Playground for Dagger 2 advanced features in pure Java.
+Observation of a possible error reporting inconsistency when using either `@Binds` or `@Provides`.
 
-Includes:
+See `GreeterComponent` to switch between the modules used.
 
-1. @Binds
-2. Static Provides methods
-3. @Reuse (TODO)
-4. Subcomponents (TODO)
-5. Map multi-bindings (TODO)
-6. Producers (asynchronous) (TODO)
-7. SubComponent Builders(TODO)
+When using `GreetingModuleWithBinds`, no error is generated, but the instance injected is a `HelloWorldGreetingService`.
 
-Inspired by [this video](https://www.youtube.com/watch?v=iwjXqRlEevg) by Gregory Kick from MCE 03
+When using `GreetingModuleWithProvides`, the following error is generated:
 
-Acknowledgements
-----------------
+```
+17:48:05: Executing external task 'build'...
+./daggger-binds-provides-inconsistency/src/main/java/com/petertackage/daggerbinds/GreeterComponent.java:15: error: com.petertackage.daggerbinds.GreetingService is bound multiple times:
+    GreetingService getGreetingService();
+                    ^
+      @Provides com.petertackage.daggerbinds.GreetingService com.petertackage.daggerbinds.GreetingModuleWithProvides.bindGreetingService(com.petertackage.daggerbinds.HelloWorldGreetingService)
+      @Provides com.petertackage.daggerbinds.GreetingService com.petertackage.daggerbinds.GreetingModuleWithProvides.bindAnotherGreetingService(com.petertackage.daggerbinds.AnotherGreetingService)
+1 error
+:compileJava FAILED
 
-Brought to you by the power of the [Chilicorn](http://spiceprogram.org/chilicorn-history/) and the [Futurice Open Source Program](http://spiceprogram.org/).
+FAILURE: Build failed with an exception.
 
-![Chilicorn Logo](https://raw.githubusercontent.com/futurice/spiceprogram/gh-pages/assets/img/logo/chilicorn_no_text-256.png)
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler error output for details.
 
-License
-=======
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
 
-    Copyright 2016 Peter Tackage
+BUILD FAILED
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+Total time: 0.927 secs
+Compilation failed; see the compiler error output for details.
+17:48:06: External task execution finished 'build'.
 
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+```
