@@ -1,6 +1,8 @@
 Possible Dagger 2 @Binds vs @Provides Error Report Inconsistency
 =================
 
+_Note: Now reported and confirmed under this Dagger 2 [issue](https://github.com/google/dagger/issues/426).
+
 Observation of a possible error reporting inconsistency when using either `@Binds` or `@Provides`.
 
 See `GreeterComponent` to switch between the modules used.
